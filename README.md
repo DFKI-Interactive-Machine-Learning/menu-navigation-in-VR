@@ -1,5 +1,7 @@
 # Gaze-Based Menu Navigation in Virtual Reality: A Comparative Study of Layouts and Interaction Techniques
 
+## Note: further documentation will be added soon
+
 ## Dependencies
 
 To run this unity project you will need:
