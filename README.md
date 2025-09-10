@@ -1,32 +1,65 @@
 # Gaze-Based Menu Navigation in Virtual Reality: A Comparative Study of Layouts and Interaction Techniques
+This repository accompanies the paper "Gaze-Based Menu Navigation in Virtual Reality: A Comparative Study of Layouts and Interaction Techniques", presented at 20th IFIP TC13 International Conference on Human-Computer Interaction (INTERACT 2025).
 
-## Note: further documentation will be added soon
+## Overview
+
+This Unity project investigates gaze-based menu navigation in virtual reality, comparing different menu layouts (e.g., Pie and List menus) and interaction techniques (e.g., dwelling, border-crossing, controller, and multimodal input). The project builds on previous research and utilizes both original and adapted assets.
 
 ## Dependencies
 
-To run this unity project you will need:
-- [OpenXR](https://docs.unity3d.com/Packages/com.unity.xr.openxr@1.13/manual/index.html)
+The project requires these Unity packages:
+- [OpenXR Plugin](https://docs.unity3d.com/Packages/com.unity.xr.openxr@1.13/manual/index.html)
 - [XR Interaction Toolkit](https://docs.unity3d.com/Packages/com.unity.xr.interaction.toolkit@3.0/manual/index.html)
-- many assets are taken from [Kim et al.](https://github.com/taejun13/LatticeMenu) https://github.com/taejun13/LatticeMenu  
 
-### Folder Structure
+Several assets are adapted from [Kim et al. 2022](https://github.com/taejun20/LatticeMenu).
 
-UserStudy contains the scripts used to evaluate the user study, see the corresponding readme for more information.
+## Folder Structure
 
-Assets/IML/Gaze/Scripts contains the scripts reponsible for the Gaze Accuracy Grid. (GazeAccuracy, StartGazeAccTest, TrackEyePosScript)
-- GazeAccuracy: holds the logic of gaze accuracy grid. it tracks the gaze hit events and evaluates them. also the datastructures for gaze hit events and menu hit events are stored tehre
-- StartGazeAccTest: holds the logic of transitioning between the kiosk element of the scene and the gaze accuracy grid
-- TrackEyePosScript: holds the logic of tracking menu hit events. this is a general hit event that tracks eye movement on a menu for every menu level.
+- **UserStudy/**: Contains evaluation scripts and a dedicated README with further details.
+- **Assets/IML/Gaze/Scripts/**: Scripts for the Gaze Accuracy Grid:
+  - `GazeAccuracy.cs`: Implements gaze grid logic, gaze and menu hit event tracking, and related data structures.
+  - `StartGazeAccTest.cs`: Handles transitions between scene kiosks and the gaze accuracy grid.
+  - `TrackEyePosScript.cs`: Tracks gaze activity and menu hit events across different menu levels.
+- **Assets/Menus/**: Menu implementations, prefabs, and utility scripts:
+  - `Editor/`: Editor extensions for transform visualization of nested GameObjects.
+  - `Lattice/`: Pie menus and logic for menu expansion and hover effects.
+  - `PanelMenu/`: List menu logic, analogous in structure to Pie menus.
+  - `SUS/`: System Usability Scale (SUS) integrated panel and logic.
+- **Assets/DwellinteractionScript.cs**: Dwell-based progress bar logic.
+- **Assets/JsonLogger.cs**: Data structures and serialization routines for user study logging.
+- **Assets/TaskManager.cs**: Core study manager, handles menu layout data and orchestrates study flow, including utility functions.
+- **Assets/LookAtCameraScript.cs**: Rotates list menus to face the user.
+- **Assets/RotateRadialToCameraScript.cs**: Rotates pie menus towards the user.
 
+## How to Run
 
-Assets/Menus contains the logic of all menus, their prefabs and related utility functions. All menus are designed with [prefab variants](https://docs.unity3d.com/Manual/PrefabVariants.html). This enabled fast prototyping while changes to the base prefab affects all variants
-- Assets/Menus/Editor contains Editor extensions to visualize the global size of nested gameobjects on their transform component
-- Assets/Menus/Lattice contains the Pie menus and the pie menu logic. the pie menu logic is reposible for menu expansion and hover effects
-- Assets/Menus/PanelMenu contains the List menus and its logic. same as Pie menu
-- Assets/Menus/SUS contains the integrated SUS panel and its logic
-- Assets/DwellinteractionScript.cs holds the logic of dwell progessbar
-- Assets/JsonLogger.cs holds the datastructures that describe the user study. it also writes them to memory
-- Assets/TaskManager.cs Main script. holds datastructures for the menu layouts and handels general procedure of user study. contains ulity function.
+1. Clone the repository and open it in Unity.
+2. Ensure the required dependencies are installed (see above).
+3. Refer to the README in `UserStudy/` for instructions on evaluating the user studies.
 
-Assets/LookAtCameraScript.cs ulity script to rotate List menu to face users.\
-Assets/RotateRadialToCameraScript.cs ulity script to rotate Pie menu to face users.
+## Citation
+
+If you use this codebase in your research, please cite the following:
+```
+@inproceedings{10.1145/3677386.3688887,
+	author = {Kop\'{a}csi, L\'{a}szl\'{o} and Klimenko, Albert and Barz, Michael and Sonntag, Daniel},
+	title = {Exploring Gaze-Based Menu Navigation in Virtual Environments},
+	year = {2024},
+	isbn = {9798400710889},
+	publisher = {Association for Computing Machinery},
+	address = {New York, NY, USA},
+	url = {https://doi.org/10.1145/3677386.3688887},
+	doi = {10.1145/3677386.3688887},
+	abstract = {With the integration of eye tracking technologies in Augmented Reality (AR) and Virtual Reality (VR) headsets, gaze-based interactions have opened up new possibilities for user interface design, including menu navigation. Prior research in gaze-based menu navigation in VR has predominantly focused on pie menus, yet recent studies indicate a user preference for list layouts. However, the comparison of gaze-based interactions on list menus is lacking in the literature. This work aims to fill this gap by exploring the viability of list menus for multi-level gaze-based menu navigation in VR and evaluating the efficiency of various gaze-based interactions, such as dwelling and border-crossing, against traditional controller navigation and multi-modal interaction using gaze and button press.},
+	booktitle = {Proceedings of the 2024 ACM Symposium on Spatial User Interaction},
+	articleno = {40},
+	numpages = {2},
+	keywords = {Extended Reality (XR), Eye Tracking, Gaze-based Interaction, Menu Navigation},
+	location = {Trier, Germany},
+	series = {SUI '24}
+}
+```
+
+## Follow-up Work
+
+Reusable assets from this work will be available at: https://github.com/DFKI-Interactive-Machine-Learning/com.dfki-iml.xr-gaze-interaction-toolkit
